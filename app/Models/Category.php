@@ -10,7 +10,7 @@ class Category extends Model
     use HasFactory;
 
     protected $guarded = [];
-    public function categories()
+    public function news()
     {
         return $this->belongsToMany(News::class, 'news_categories')->withTimestamps();
     }

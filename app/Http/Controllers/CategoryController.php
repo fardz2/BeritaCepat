@@ -42,9 +42,11 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $slug)
     {
-        //
+        $category_news = Category::where("category_slug", $slug)->firstOrFail();
+        $categories = Category::get();
+        return view('page.visitor.news.detail_category', ['category_news' => $category_news, 'categories' => $categories]);
     }
 
     /**

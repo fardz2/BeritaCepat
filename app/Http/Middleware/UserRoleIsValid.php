@@ -16,7 +16,7 @@ class UserRoleIsValid
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::user()->role != 'admin') {
+        if ($request->user()->role != 'admin') {
             return redirect()->route('welcome');
         }
 

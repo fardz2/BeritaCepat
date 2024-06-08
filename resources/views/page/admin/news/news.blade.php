@@ -19,24 +19,26 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    @if (count($news) == 0)
+                    @if ($news->isEmpty())
                         <p>Berita tidak ada</p>
                     @else
                         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-                            @foreach ($news as $news)
-                                <a href="{{ route('news.show', $news->title_slug) }}">
+                            @foreach ($news as $item)
+                                <a href="{{ route('news.show', $item->title_slug) }}">
                                     <div class="flex flex-col bg-white border border-gray-200 rounded shadow-sm">
                                         <div>
-                                            <img src="{{ $news->thumbnail }}" class="object-cover w-full h-48" alt="{{ $news->title }}">
+                                            <img src="{{ $item->thumbnail }}" class="object-cover w-full h-48" alt="{{ $item->title }}">
                                         </div>
                                         <div class="p-4">
-                                            <h2 class="font-bold text-xl mb-2">{{ $news->title }}</h2>
-                                    
+                                            <h2 class="font-bold text-xl mb-2">{{ $item->title }}</h2>
                                         </div>
                                     </div>
                                 </a>
                             @endforeach
                         </div>
+                        <center class="mt-4">
+                            {{ $news->links() }}
+                        </center>
                     @endif
                 </div>
             </div>

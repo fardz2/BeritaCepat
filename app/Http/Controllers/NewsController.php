@@ -16,7 +16,7 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $news = News::get();
+        $news = News::paginate(10);
 
         return view('page.admin.news.news', ['news' => $news]);
     }
@@ -85,23 +85,24 @@ class NewsController extends Controller
     {
         $request->validate([
             'title' => 'required',
-            'thumbnail' => 'required',
             'content' => 'required',
             'category' => 'required'
         ]);
         $news = News::find($id);
         $thumbnail = Str::after($news->thumbnail, 'storage/');
+        $update_news = [
+            'title' => Str::title($request->title),
+            'title_slug' => Str::slug($request->title, '-'),
+
+            'content' => $request->content
+        ];
         if ($request->hasFile('thumbnail')) {
             Storage::delete($thumbnail);
             $path = $request->thumbnail->store('public/thumbnail');
             $thumbnail_url = str_replace('public/', '', $path);
+            $update_news['thumbnail'] =   asset('storage/' .  $thumbnail_url);
         }
-        $news->update([
-            'title' => Str::title($request->title),
-            'title_slug' => Str::slug($request->title, '-'),
-            'thumbnail' => asset('storage/' .  $thumbnail_url),
-            'content' => $request->content
-        ]);
+        $news->update($update_news);
 
         return redirect()->route('news.index')->with('status', 'Berita Berhasil Diedit');
     }

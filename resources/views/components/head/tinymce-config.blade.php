@@ -3,7 +3,7 @@
     <script>
     tinymce.init({
         selector: 'textarea#myeditorinstance', // Replace this CSS selector to match the placeholder element for TinyMCE
-        plugins: 'code table lists image',
+        plugins: 'code table lists image link',
         toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist |',
         file_picker_types: 'image',
         file_picker_callback: (cb, value, meta) => {
