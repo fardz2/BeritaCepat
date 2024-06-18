@@ -38,7 +38,7 @@ class CommentController extends Controller
     {
 
         $commentPivot = Comment::findOrFail($comment_id);
-        if ($request->user()->id == $commentPivot->user_id) {
+        if ($request->user()->id == $commentPivot->user_id || $request->user()->role == "admin") {
             $commentPivot->delete();
         }
         return response()->json([

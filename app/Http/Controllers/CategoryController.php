@@ -45,8 +45,10 @@ class CategoryController extends Controller
     public function show(string $slug)
     {
         $category_news = Category::where("category_slug", $slug)->orderBy('created_at', 'desc')->firstOrFail();
+        $news = $category_news->news()->paginate(10);
+
         $categories = Category::get();
-        return view('page.visitor.news.detail_category', ['category_news' => $category_news, 'categories' => $categories]);
+        return view('page.visitor.news.detail_category', ['category_news' => $news, 'news_title' => $category_news->category_name, 'categories' => $categories]);
     }
 
     /**

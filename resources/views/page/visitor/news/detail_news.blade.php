@@ -81,7 +81,7 @@
              
                             <div>
                                 @auth
-                                @if (auth()->user()->id == $comment->pivot->user_id)
+                                @if (auth()->user()->id == $comment->pivot->user_id || auth()->user()->role == "admin")
                                     <button id="dropdownButton{{$comment->pivot->id}}" data-dropdown-toggle="dropdown{{$comment->pivot->id}}" class="inline-block text-gray-500  focus:ring-4 focus:outline-none focus:ring-gray-200  rounded-lg text-sm p-1.5" type="button">
                                         <span class="sr-only">Open dropdown</span>
                                         <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
