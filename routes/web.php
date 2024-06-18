@@ -16,18 +16,21 @@ Route::get('/', function (Request $request) {
     $trendings =  News::orderBy('created_at', 'desc')->skip(5)->take(4)->get();
     $untukmu1 =  News::orderBy('created_at', 'desc')->skip(9)->take(4)->get();
     $untukmu2 =  News::orderBy('created_at', 'desc')->skip(13)->first();
+
     return view('welcome', ['categories' => $categories, 'news_baru' => $news_baru, 'news_baru2' => $news_baru2, "trendings" => $trendings, "untukmu1" => $untukmu1, "untukmu2" => $untukmu2]);
 })->name('welcome');
 Route::get('/search', function (Request $request) {
     $categories = Category::get();
-    if ($request->has('berita')) {
-        if ($request->berita != "") {
-            $searches =  News::where('title', 'like', '%' . $request->berita . '%')->paginate(10);
-            return view('page.visitor.news.search_news', ['categories' => $categories, 'searches' => $searches]);
-        } else {
-            return redirect()->route('welcome');
-        }
+
+    // Menggunakan if else untuk menangani kasus di mana parameter pencarian tidak ada
+    if ($request->has('berita') && $request->berita != '') {
+        $searches = News::where('title', 'like', '%' . $request->berita . '%')->paginate(8);
+    } else {
+        // Jika tidak ada parameter pencarian, mungkin Anda ingin menampilkan semua berita
+        $searches = News::paginate(8);
     }
+
+    return view('page.visitor.news.search_news', ['categories' => $categories, 'searches' => $searches]);
 })->name('search');
 
 Route::get('/dashboard', function () {

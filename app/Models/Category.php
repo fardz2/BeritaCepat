@@ -12,6 +12,6 @@ class Category extends Model
     protected $guarded = [];
     public function news()
     {
-        return $this->belongsToMany(News::class, 'news_categories')->withTimestamps();
+        return $this->belongsToMany(News::class, 'news_categories')->withTimestamps()->orderBy('pivot_created_at', 'desc');
     }
 }

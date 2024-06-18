@@ -1,4 +1,5 @@
 <x-guest-layout>
+    <p class="text-lg font-bold">Register</p>
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
@@ -41,7 +42,7 @@
 
         <div class="flex items-center justify-end mt-4">
             <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
+                {{ __('Sudah mempunyai akun?') }}
             </a>
 
             <x-primary-button class="ms-4">

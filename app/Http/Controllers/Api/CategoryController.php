@@ -15,6 +15,13 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::get();
-        return response()->json(["status" => 200, "data" => $categories], 200);
+        return response()->json(["status" => 200, "data" => $categories]);
+    }
+
+    public function show(String $slug)
+    {
+        $category_news = Category::with("news")->where("category_slug", $slug)->firstOrFail();
+
+        return response()->json(["status" => 200, "data" => $category_news]);
     }
 }

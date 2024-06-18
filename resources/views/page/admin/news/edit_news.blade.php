@@ -21,7 +21,7 @@
                         </div>
                         <div class="mb-5">
                             <label for="thumbnail" class="block mb-2 text-sm font-medium text-gray-900 ">Thumbnail</label>
-                            <img src="{{$news->thumbnail}}" alt="">
+                            <img src="{{asset($news->thumbnail)}}" alt="">
                             <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50  focus:outline-none" id="file_input" type="file" name="thumbnail">
                             @error('thumbnail')
                                  <div class="alert alert-danger">{{ $message }}</div>
@@ -30,8 +30,8 @@
                         <div class="mb-5">
                             <label for="category"  class="block mb-2 text-sm font-medium text-gray-900 ">Kategori</label>
                             <select name="category"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
-                                @foreach ($categories as $category)
-                                    <option value="">--Pilih Kategori--</option>
+                                <option value="">--Pilih Kategori--</option>
+                                @foreach ($categories as $category) 
                                     <option value="{{$category->id}}" @if ($news->categories->first()->id == $category->id)
                                         selected
                                     @endif>{{$category->category_name}}</option>

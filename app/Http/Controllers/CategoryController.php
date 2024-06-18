@@ -44,7 +44,7 @@ class CategoryController extends Controller
      */
     public function show(string $slug)
     {
-        $category_news = Category::where("category_slug", $slug)->firstOrFail();
+        $category_news = Category::where("category_slug", $slug)->orderBy('created_at', 'desc')->firstOrFail();
         $categories = Category::get();
         return view('page.visitor.news.detail_category', ['category_news' => $category_news, 'categories' => $categories]);
     }

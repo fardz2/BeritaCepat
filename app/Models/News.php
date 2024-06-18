@@ -11,10 +11,10 @@ class News extends Model
     protected $guarded = [];
     public function categories()
     {
-        return $this->belongsToMany(Category::class, 'news_categories')->withTimestamps();
+        return $this->belongsToMany(Category::class, 'news_categories')->withTimestamps()->orderBy('pivot_created_at', 'desc');
     }
     public function comments()
     {
-        return $this->belongsToMany(User::class, 'comments')->withPivot('id', 'comment', 'created_at', 'updated_at')->orderBy('pivot_created_at', 'desc');;
+        return $this->belongsToMany(User::class, 'comments')->withPivot('id', 'comment', 'created_at', 'updated_at')->orderBy('pivot_created_at', 'desc');
     }
 }

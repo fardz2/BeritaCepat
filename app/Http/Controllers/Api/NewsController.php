@@ -12,15 +12,11 @@ class NewsController extends Controller
 {
     public function index()
     {
-        $news_baru = News::with("categories")->latest()->first();
+        $news_baru = News::with("categories")->orderBy('created_at', 'desc')->get()->take(4)->values();
+        $trendings = News::with("categories")->orderBy('created_at', 'desc')->get()->skip(4)->take(4)->values();
+        $recomendation = News::with("categories")->orderBy('created_at', 'desc')->get()->skip(8)->take(4)->values();
 
-        unset($news_baru['content']);
-        $trendings = News::with("categories")->orderBy('created_at', 'desc')->get()->skip(1)->values();
-
-        unset($trendings['content']);
-
-
-        return response()->json(["status" => 200, "data" => ["news_baru" => $news_baru, "trendings" => $trendings]], 200);
+        return response()->json(["status" => 200, "data" => ["news_baru" => $news_baru, "trendings" => $trendings, "recomendation" => $recomendation]], 200);
     }
     public function show(string $slug)
     {

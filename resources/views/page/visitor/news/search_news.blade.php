@@ -21,28 +21,29 @@
                         
                     </div>
                 </div>
-                <div class=" flex flex-col md:flex-row gap-4 mt-10">
+            
                     @if ($searches->count() == 0)
                         <p>Berita tidak ditemukan</p>
                     @else
-                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mt-10">
                         @foreach ($searches as $search)
+                        <div>
                             <a href="{{ route('news.show', $search->title_slug) }}">
-                                <div class="flex flex-col bg-white border border-gray-200 rounded shadow-sm">
-                                    <div>
-                                        <img src="{{ $search->thumbnail }}" class="object-cover w-full h-48" alt="{{ $search->title }}">
-                                    </div>
-                                    <div class="p-4">
-                                        <h2 class="font-bold text-xl mb-2">{{ $search->title }}</h2>
-                                
-                                    </div>
+                                <div class="w-full h-[200px] overflow-hidden rounded-xl">
+                                    <img src="{{asset($search->thumbnail)}}" alt=""  class="object-cover w-full h-full">
                                 </div>
+                                <div>
+                                    <h3 class="font-bold text-2xl">{{$search->title}}</h3>
+                                    <a href="{{route('category.show',$search->categories[0]["category_slug"])}}" class="text-cyan-500">{{$search->categories[0]["category_name"]}}</a>
+                                </div>
+                            
                             </a>
+                        </div>
                         @endforeach
                     </div>
                     {{$searches->links()}}
                     @endif
                   
-                </div>
+      
 
 @endsection

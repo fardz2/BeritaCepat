@@ -48,6 +48,6 @@ class User extends Authenticatable
     }
     public function comments()
     {
-        return $this->belongsToMany(News::class, 'comments')->withPivot('id', 'comment', 'created_at', 'updated_at')->orderBy('pivot_created_at', 'desc');;
+        return $this->belongsToMany(News::class, 'comments')->withPivot('id', 'comment', 'created_at', 'updated_at')->orderBy('pivot_created_at', 'desc');
     }
 }

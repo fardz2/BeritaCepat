@@ -24,16 +24,18 @@
                     @else
                         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
                             @foreach ($news as $item)
-                                <a href="{{ route('news.show', $item->title_slug) }}">
-                                    <div class="flex flex-col bg-white border border-gray-200 rounded shadow-sm">
-                                        <div>
-                                            <img src="{{ $item->thumbnail }}" class="object-cover w-full h-48" alt="{{ $item->title }}">
-                                        </div>
-                                        <div class="p-4">
-                                            <h2 class="font-bold text-xl mb-2">{{ $item->title }}</h2>
-                                        </div>
+                            <div>
+                                <a href="{{route('news.show',$item->title_slug)}}">
+                                    <div class="w-full h-[200px]  overflow-hidden rounded-xl">
+                                        <img src="{{asset($item->thumbnail)}}" alt=""  class="object-cover w-full h-full ">
                                     </div>
-                                </a>
+                                    <div>
+                                        <h3 class="font-bold text-2xl">{{$item->title}}</h3>
+                                        <a href="{{route('category.show',$item->categories[0]["category_slug"])}}" class="text-cyan-500">{{$item->categories[0]["category_name"]}}</a>
+                                    </div>
+                                 </a>
+                            </div>
+                                    
                             @endforeach
                         </div>
                         <center class="mt-4">

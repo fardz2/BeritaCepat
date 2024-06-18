@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\NewsController;
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 Route::get('category', [CategoryController::class, 'index']);
+Route::get('category/{slug}', [CategoryController::class, 'show']);
 Route::get('news', [NewsController::class, 'index']);
 Route::get('news/{slug}', [NewsController::class, 'show']);
 Route::get('search', [NewsController::class, 'search']);
