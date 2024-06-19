@@ -9,6 +9,10 @@ class News extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    public function getFormattedCreatedAtAttribute()
+    {
+        return $this->created_at->locale('id')->translatedFormat('d F Y H:i');
+    }
     public function categories()
     {
         return $this->belongsToMany(Category::class, 'news_categories')->withTimestamps()->orderBy('pivot_created_at', 'desc');

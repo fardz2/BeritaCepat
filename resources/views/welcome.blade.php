@@ -29,7 +29,7 @@
                                     <img src="{{asset($news_baru->thumbnail)}}" alt="" class="object-cover w-full h-full">
                                 </div>
                                
-                                <h2 class="font-bold text-xl">{{$news_baru->title}}</h2>
+                                <h3 class="font-bold text-lg">{{Str::limit($news_baru->title)}}</h3>
                                 <a href="{{route('category.show',$news_baru->categories[0]["category_slug"])}}" class="text-cyan-500 ">{{$news_baru->categories[0]["category_name"]}}</a>
                             </div>
                         </a>
@@ -45,7 +45,7 @@
                                             <img src="{{asset($news->thumbnail)}}" alt=""  class="object-cover w-full h-full ">
                                         </div>
                                         <div>
-                                            <h2 class="font-bold text-xl">{{$news->title}}</h2>
+                                            <h3 class="font-bold text-lg">{{Str::limit($news->title,50)}}</h3>
                                             <a href="{{route('category.show',$news->categories[0]["category_slug"])}}" class="text-cyan-500">{{$news->categories[0]["category_name"]}}</a>
                                         </div>
                                     </div>
@@ -64,7 +64,7 @@
                                             <img src="{{ asset($trending->thumbnail) }}" alt="" class="object-cover w-full h-full">
                                         </div>
                                         <div>
-                                            <h3 class="font-bold text-xl">{{ $trending->title }}</h3>
+                                            <h3 class="font-bold text-lg">{{Str::limit($trending->title,50)}}</h3>
                                             @if (count($trending->categories) > 0)
                                                 <a href="{{ route('category.show', $trending->categories[0]['category_slug']) }}" class="text-cyan-500">{{ $trending->categories[0]['category_name'] }}</a>
                                             @endif
@@ -86,7 +86,7 @@
                                         <img src="{{asset($news->thumbnail)}}" alt=""  class="object-cover w-full  h-full">
                                     </div>
                                     <div>
-                                        <h3  class="font-bold text-xl">{{$news->title}}</h3>
+                                        <h3  class="font-bold text-lg">{{Str::limit($news->title,50)}}</h3>
                                         <a href="{{route('category.show',$news->categories[0]["category_slug"])}}" class="text-rose-700">{{$news->categories[0]["category_name"]}}</a>
                                     </div>
                                 </a>
@@ -99,7 +99,7 @@
                                     <img src="{{asset($untukmu2->thumbnail)}}" alt=""  class="object-cover w-full h-full">
                                 </div>
                                 <div>
-                                    <h3  class="font-bold text-xl">{{$untukmu2->title}}</h3>
+                                    <h3  class="font-bold text-lg">{{$untukmu2->title}}</h3>
                                     <a href="{{route('category.show',$untukmu2->categories[0]["category_slug"])}}" class="text-rose-700">{{$untukmu2->categories[0]["category_name"]}}</a>
                                 </div>
                              </a>

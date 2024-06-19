@@ -37,13 +37,15 @@
         <h1 class="font-bold text-xl">
             {{$news->title}}
         </h1>
+    
     </div>
-    <div class="my-2">
+    <div class="my-2 flex justify-between">
         <a href="{{route('category.show',$news->categories->first()->category_slug)}}">
             <p class="text-blue-400">{{$news->categories->first()->category_name}}</p>
         </a>
+        <p>{{ $news->formatted_created_at}}</p>
     </div>
-    <div>
+    <div class="prose prose-slate max-w-full">
         {!!$news->content !!}
     </div>
     <div>

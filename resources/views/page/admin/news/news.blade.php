@@ -30,7 +30,7 @@
                                         <img src="{{asset($item->thumbnail)}}" alt=""  class="object-cover w-full h-full ">
                                     </div>
                                     <div>
-                                        <h3 class="font-bold text-2xl">{{$item->title}}</h3>
+                                        <h3 class="font-bold text-lg">{{Str::limit($item->title,50)}}</h3>
                                         <a href="{{route('category.show',$item->categories[0]["category_slug"])}}" class="text-cyan-500">{{$item->categories[0]["category_name"]}}</a>
                                     </div>
                                  </a>

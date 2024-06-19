@@ -5,6 +5,19 @@
         selector: 'textarea#myeditorinstance', // Replace this CSS selector to match the placeholder element for TinyMCE
         plugins: 'code table lists image link',
         toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist |',
+        setup: function (editor) {
+                editor.on('init', function () {
+                    editor.getBody().classList.add('prose', 'prose-lg');
+                });
+                editor.on('NodeChange', function (e) {
+                    if (e.element.nodeName === 'UL' || e.element.nodeName === 'OL') {
+                        e.element.classList.add('custom-ul');
+                        if (e.element.nodeName === 'OL') {
+                            e.element.classList.add('custom-ol');
+                        }
+                    }
+                });
+            },
         file_picker_types: 'image',
         file_picker_callback: (cb, value, meta) => {
             const input = document.createElement('input');
